@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FareScout — iOS Mockups Preview</title>
+    <style>
+        :root {
+            --primary-blue: #007AFF;
+            --secondary-indigo: #5856D6;
+            --success-green: #34C759;
+            --warning-orange: #FF9500;
+            --error-red: #FF3B30;
+
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F2F7;
+            --bg-tertiary: #FFFFFF;
+
+            --label-primary: #000000;
+            --label-secondary: rgba(60, 60, 67, 0.6);
+            --label-tertiary: rgba(60, 60, 67, 0.3);
+
+            --separator: rgba(60, 60, 67, 0.29);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', sans-serif;
+            background: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .screens-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .screen-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .screen-label {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .iphone-frame {
+            width: 375px;
+            height: 812px;
+            background: var(--bg-secondary);
+            border-radius: 47px;
+            padding: 12px;
+            box-shadow:
+                0 50px 100px rgba(0,0,0,0.5),
+                inset 0 0 0 3px #1a1a1a;
+            position: relative;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            border-radius: 39px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Dynamic Island */
+        .dynamic-island {
+            position: absolute;
+            top: 11px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 126px;
+            height: 37px;
+            background: #000;
+            border-radius: 24px;
+            z-index: 100;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            height: 59px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 24px 8px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .status-time {
+            font-weight: 600;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 0.5px solid var(--separator);
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--primary-blue);
+            font-size: 17px;
+        }
+
+        .nav-title {
+            font-size: 17px;
+            font-weight: 600;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-action {
+            color: var(--primary-blue);
+            font-size: 22px;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        .content::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Header */
+        .app-header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .app-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Quick Actions */
+        .section-header {
+            font-size: 13px;
+            color: var(--label-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            padding-left: 4px;
+        }
+
+        .chips {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+
+        .chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-secondary);
+            padding: 8px 16px;
+            border-radius: 16px;
+            font-size: 15px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .chip:hover {
+            background: #E5E5EA;
+        }
+
+        /* Cards */
+        .card-group {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .card-row {
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 0.5px solid var(--separator);
+        }
+
+        .card-row:last-child {
+            border-bottom: none;
+        }
+
+        .card-content h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .card-content p {
+            font-size: 13px;
+            color: var(--label-secondary);
+        }
+
+        .card-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .card-arrow {
+            color: var(--label-tertiary);
+            font-size: 14px;
+        }
+
+        /* Chat Bubbles */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 8px 0;
+        }
+
+        .bubble {
+            max-width: 280px;
+            padding: 10px 14px;
+            font-size: 17px;
+            line-height: 1.4;
+        }
+
+        .bubble-user {
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 18px 18px 4px 18px;
+            align-self: flex-end;
+        }
+
+        .bubble-assistant {
+            background: var(--bg-secondary);
+            color: var(--label-primary);
+            border-radius: 18px 18px 18px 4px;
+            align-self: flex-start;
+        }
+
+        .bubble-assistant-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .assistant-avatar {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-indigo));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* Calendar Widget */
+        .calendar-widget {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .calendar-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 16px;
+        }
+
+        .calendar-nav span {
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            text-align: center;
+        }
+
+        .calendar-day-header {
+            font-size: 12px;
+            color: var(--label-secondary);
+            padding: 8px 0;
+        }
+
+        .calendar-day {
+            padding: 10px;
+            font-size: 17px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .calendar-day:hover {
+            background: var(--bg-secondary);
+        }
+
+        .calendar-day.selected {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .calendar-day.range {
+            background: rgba(0, 122, 255, 0.15);
+            border-radius: 0;
+        }
+
+        .calendar-day.today {
+            border: 2px solid var(--primary-blue);
+        }
+
+        .calendar-day.disabled {
+            color: var(--label-tertiary);
+        }
+
+        .calendar-dates {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 0.5px solid var(--separator);
+        }
+
+        .calendar-date-item {
+            text-align: center;
+        }
+
+        .calendar-date-item label {
+            font-size: 13px;
+            color: var(--label-secondary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .calendar-date-item span {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Form Styles */
+        .form-group {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .form-row {
+            padding: 12px 16px;
+            border-bottom: 0.5px solid var(--separator);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-row:last-child {
+            border-bottom: none;
+        }
+
+        .form-label {
+            font-size: 13px;
+            color: var(--label-secondary);
+        }
+
+        .form-value {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .form-value-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 17px;
+        }
+
+        .form-value-content .icon {
+            color: var(--primary-blue);
+        }
+
+        .form-action {
+            color: var(--label-tertiary);
+        }
+
+        .toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 0.5px solid var(--separator);
+        }
+
+        .toggle-row:last-child {
+            border-bottom: none;
+        }
+
+        .toggle {
+            width: 51px;
+            height: 31px;
+            background: #E9E9EB;
+            border-radius: 16px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle.on {
+            background: var(--success-green);
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 27px;
+            height: 27px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .toggle.on::after {
+            transform: translateX(20px);
+        }
+
+        /* Flight Card */
+        .flight-card {
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .flight-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .flight-star {
+            color: var(--label-tertiary);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .flight-star.active {
+            color: var(--warning-orange);
+        }
+
+        .flight-badge {
+            background: var(--success-green);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .flight-airline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .airline-logo {
+            width: 24px;
+            height: 24px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .airline-name {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .flight-segment {
+            margin-bottom: 12px;
+        }
+
+        .flight-times {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .flight-time {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .flight-line {
+            flex: 1;
+            height: 2px;
+            background: var(--label-tertiary);
+            margin: 0 12px;
+            position: relative;
+        }
+
+        .flight-line::after {
+            content: '✈';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+        }
+
+        .flight-cities {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flight-city {
+            font-size: 12px;
+            color: var(--label-secondary);
+        }
+
+        .flight-duration {
+            text-align: center;
+            font-size: 13px;
+            color: var(--label-secondary);
+        }
+
+        .flight-stops {
+            text-align: center;
+            font-size: 13px;
+            color: var(--success-green);
+            font-weight: 500;
+        }
+
+        .flight-stops.layover {
+            color: var(--warning-orange);
+        }
+
+        .flight-baggage {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--success-green);
+            margin-top: 12px;
+        }
+
+        .flight-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px solid var(--separator);
+        }
+
+        .flight-price {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .flight-price-label {
+            font-size: 12px;
+            color: var(--label-secondary);
+        }
+
+        .flight-cta {
+            width: 44px;
+            height: 44px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Detail Screen */
+        .detail-segment {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .segment-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-indigo));
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .segment-content {
+            padding: 20px;
+        }
+
+        .segment-times {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .segment-time {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .segment-cities {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .segment-city {
+            font-size: 16px;
+        }
+
+        .segment-airports {
+            display: flex;
+            justify-content: space-between;
+            color: var(--label-secondary);
+            font-size: 13px;
+        }
+
+        .timeline {
+            margin-top: 20px;
+            padding-left: 20px;
+            border-left: 2px solid var(--label-tertiary);
+            position: relative;
+        }
+
+        .timeline::before,
+        .timeline::after {
+            content: '';
+            position: absolute;
+            left: -5px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .timeline::before {
+            top: 0;
+            border: 2px solid var(--label-tertiary);
+            background: white;
+        }
+
+        .timeline::after {
+            bottom: 0;
+            background: var(--label-primary);
+        }
+
+        .timeline-item {
+            padding: 8px 0 8px 16px;
+            font-size: 15px;
+        }
+
+        .timeline-item.secondary {
+            color: var(--label-secondary);
+        }
+
+        /* Fare Card */
+        .fare-card {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .fare-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .fare-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 17px;
+        }
+
+        .fare-icon {
+            width: 20px;
+            text-align: center;
+        }
+
+        .fare-icon.included {
+            color: var(--success-green);
+        }
+
+        .fare-icon.excluded {
+            color: var(--error-red);
+        }
+
+        .fare-icon.warning {
+            color: var(--warning-orange);
+        }
+
+        .fare-link {
+            color: var(--primary-blue);
+            font-size: 15px;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        /* Assistant Hint */
+        .assistant-hint {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 12px;
+            font-size: 16px;
+            color: var(--label-secondary);
+        }
+
+        .assistant-hint .icon {
+            font-size: 20px;
+        }
+
+        /* Input Bar */
+        .input-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            padding-bottom: calc(8px + 34px);
+            background: var(--bg-secondary);
+            border-top: 0.5px solid var(--separator);
+        }
+
+        .input-field {
+            flex: 1;
+            height: 36px;
+            background: var(--bg-tertiary);
+            border: none;
+            border-radius: 18px;
+            padding: 0 12px;
+            font-size: 17px;
+            outline: none;
+        }
+
+        .input-field::placeholder {
+            color: var(--label-tertiary);
+        }
+
+        .voice-btn {
+            width: 36px;
+            height: 36px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .voice-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .voice-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            fill: var(--label-tertiary);
+            pointer-events: none;
+        }
+
+        .input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .input-wrapper .input-field {
+            padding-left: 36px;
+        }
+
+        /* Voice Recording Overlay */
+        .voice-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            border-radius: 39px;
+        }
+
+        .voice-circle {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-indigo));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 1.5s ease-in-out infinite;
+            margin-bottom: 32px;
+        }
+
+        .voice-circle svg {
+            width: 48px;
+            height: 48px;
+            fill: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 0 0 20px rgba(0, 122, 255, 0); }
+        }
+
+        .voice-status {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .voice-transcript {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 17px;
+            text-align: center;
+            max-width: 280px;
+            line-height: 1.4;
+            min-height: 48px;
+        }
+
+        .voice-transcript .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 20px;
+            background: white;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .voice-cancel {
+            position: absolute;
+            bottom: 80px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .waveform {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 40px;
+            margin-bottom: 24px;
+        }
+
+        .waveform-bar {
+            width: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 2px;
+            animation: wave 0.8s ease-in-out infinite;
+        }
+
+        .waveform-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+        .waveform-bar:nth-child(2) { height: 35px; animation-delay: 0.1s; }
+        .waveform-bar:nth-child(3) { height: 25px; animation-delay: 0.2s; }
+        .waveform-bar:nth-child(4) { height: 40px; animation-delay: 0.3s; }
+        .waveform-bar:nth-child(5) { height: 30px; animation-delay: 0.4s; }
+        .waveform-bar:nth-child(6) { height: 35px; animation-delay: 0.5s; }
+        .waveform-bar:nth-child(7) { height: 20px; animation-delay: 0.6s; }
+
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.5); }
+        }
+
+        /* Tab Bar */
+        .tab-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            padding-bottom: calc(8px + 34px);
+            background: var(--bg-tertiary);
+            border-top: 0.5px solid var(--separator);
+        }
+
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            color: var(--label-secondary);
+            cursor: pointer;
+        }
+
+        .tab-item.active {
+            color: var(--primary-blue);
+        }
+
+        .tab-icon {
+            font-size: 24px;
+        }
+
+        /* Primary Button */
+        .btn-primary {
+            width: 100%;
+            height: 50px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        /* Bottom Action Bar */
+        .bottom-action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            padding-bottom: calc(16px + 34px);
+            background: var(--bg-tertiary);
+            border-top: 0.5px solid var(--separator);
+        }
+
+        .bottom-price {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .btn-book {
+            height: 50px;
+            padding: 0 24px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Sort Filter Bar */
+        .sort-filter-bar {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            border-bottom: 0.5px solid var(--separator);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .filter-pill {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--bg-secondary);
+            padding: 8px 12px;
+            border-radius: 16px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .nav-subtitle {
+            font-size: 13px;
+            color: var(--label-secondary);
+            padding: 0 16px 8px;
+        }
+
+        /* iOS 18 Style Icons */
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-blue);
+            flex-shrink: 0;
+        }
+
+        .icon-svg.secondary {
+            fill: var(--label-secondary);
+        }
+
+        .icon-svg.tertiary {
+            fill: var(--label-tertiary);
+        }
+
+        /* Tab Bar Icons */
+        .tab-icon-svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Onboarding Screen */
+        .onboarding-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 24px;
+            text-align: center;
+        }
+
+        .onboarding-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-indigo));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .onboarding-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        .onboarding-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .onboarding-subtitle {
+            font-size: 17px;
+            color: var(--label-secondary);
+            line-height: 1.5;
+            margin-bottom: 40px;
+        }
+
+        .feature-list {
+            width: 100%;
+            text-align: left;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 0.5px solid var(--separator);
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--primary-blue);
+        }
+
+        .feature-text h4 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 15px;
+            color: var(--label-secondary);
+            line-height: 1.4;
+        }
+
+        /* Control buttons */
+        .control-btn {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-tertiary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .control-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--label-secondary);
+        }
+
+        .control-btn.active svg {
+            fill: var(--primary-blue);
+        }
+
+        .control-btn.muted svg {
+            fill: var(--error-red);
+        }
+
+        /* Segmented Control */
+        .segmented-control {
+            display: flex;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 2px;
+            margin-bottom: 16px;
+        }
+
+        .segment {
+            flex: 1;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .segment.active {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Stepper */
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stepper-btn {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .stepper-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--primary-blue);
+        }
+
+        .stepper-value {
+            font-size: 17px;
+            font-weight: 500;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        /* Child age input */
+        .child-age-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+        .child-age-label {
+            font-size: 15px;
+            color: var(--label-secondary);
+        }
+
+        .age-input {
+            width: 60px;
+            height: 32px;
+            background: var(--bg-secondary);
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">FareScout</h1>
+    <p class="page-subtitle">iOS Mockups — Apple Human Interface Guidelines</p>
+
+    <div class="screens-container">
+        <!-- Screen 0: Onboarding (First Launch) -->
+        <div class="screen-wrapper">
+            <div class="screen-label">00 — First Launch</div>
+            <div class="iphone-frame">
+                <div class="screen">
+                    <div class="dynamic-island"></div>
+
+                    <div class="status-bar">
+                        <span class="status-time">9:41</span>
+                        <div class="status-icons">
+                            <!-- Cellular bars -->
+                            <svg style="width:17px;height:12px;" viewBox="0 0 17 12"><path fill="#000" d="M1 8h2v4H1zM5 5h2v7H5zM9 2h2v10H9zM13 0h2v12h-2z" opacity="1"/></svg>
+                            <!-- WiFi -->
+                            <svg style="width:16px;height:12px;" viewBox="0 0 16 12"><path fill="#000" d="M8 2.4c2.5 0 4.8 1 6.5 2.6l1.5-1.5C13.8 1.3 11 0 8 0S2.2 1.3 0 3.5L1.5 5C3.2 3.4 5.5 2.4 8 2.4zm0 3c1.5 0 2.9.6 3.9 1.6l1.5-1.5c-1.4-1.4-3.3-2.2-5.4-2.2s-4 .8-5.4 2.2L4.1 7c1-.9 2.4-1.5 3.9-1.6zm0 3c.8 0 1.6.3 2.1.9l2-2c-1.1-1.1-2.6-1.8-4.1-1.8s-3 .7-4.1 1.8l2 2c.5-.6 1.3-.9 2.1-.9zM8 12l2-2c-.5-.6-1.2-.9-2-.9s-1.5.3-2 .9l2 2z"/></svg>
+                            <!-- Battery -->
+                            <svg style="width:25px;height:12px;" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-width="1"/><rect x="2" y="3" width="17" height="6" rx="1" fill="#000"/><path d="M23 4v4c1 0 1.5-.5 1.5-2s-.5-2-1.5-2z" fill="#000" opacity="0.4"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="onboarding-content" style="justify-content: flex-start; padding-top: 39px; padding-bottom: 0;">
+                        <div class="onboarding-icon" style="width: 56px; height: 56px; margin-bottom: 12px; border-radius: 14px; overflow: hidden;">
+                            <svg viewBox="0 0 24 24" style="width:28px;height:28px;"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                        </div>
+                        <h1 class="onboarding-title" style="font-size: 28px; margin-bottom: 8px;">FareScout</h1>
+                        <p class="onboarding-subtitle" style="font-size: 17px; margin-bottom: 28px; line-height: 1.2;">Smart assistant for flight search</p>
+
+                        <div class="feature-list" style="width: 100%;">
+                            <div class="feature-item" style="padding: 12px 0;">
+                                <div class="feature-icon" style="width: 44px; height: 44px; border-radius: 12px;">
+                                    <svg viewBox="0 0 24 24" style="width:22px;height:22px;"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
+                                </div>
+                                <div class="feature-text">
+                                    <h4 style="font-size: 17px; margin-bottom: 2px;">Natural Search</h4>
+                                    <p style="font-size: 15px; line-height: 1.4;">Flights to Paris from Barcelona for two on May 7</p>
+                                </div>
+                            </div>
+                            <div class="feature-item" style="padding: 12px 0;">
+                                <div class="feature-icon" style="width: 44px; height: 44px; border-radius: 12px;">
+                                    <svg viewBox="0 0 24 24" style="width:22px;height:22px;"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                                </div>
+                                <div class="feature-text">
+                                    <h4 style="font-size: 17px; margin-bottom: 2px;">Price Monitoring</h4>
+                                    <p style="font-size: 15px; line-height: 1.4;">Track price drops on your routes</p>
+                                </div>
+                            </div>
+                            <div class="feature-item" style="padding: 12px 0;">
+                                <div class="feature-icon" style="width: 44px; height: 44px; border-radius: 12px;">
+                                    <svg viewBox="0 0 24 24" style="width:22px;height:22px;"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                                </div>
+                                <div class="feature-text">
+                                    <h4 style="font-size: 17px; margin-bottom: 2px;">Clear Rules</h4>
+                                    <p style="font-size: 15px; line-height: 1.4;">Fare rules and visa requirements explained</p>
+                                </div>
+                            </div>
+                            <div class="feature-item" style="padding: 12px 0; border-bottom: none;">
+                                <div class="feature-icon" style="width: 44px; height: 44px; border-radius: 12px;">
+                                    <svg viewBox="0 0 24 24" style="width:22px;height:22px;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                </div>
+                                <div class="feature-text">
+                                    <h4 style="font-size: 17px; margin-bottom: 2px;">Personalization</h4>
+                                    <p style="font-size: 15px; line-height: 1.4;">Adapts to your preferences</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 16px; padding-bottom: calc(16px + 34px);">
+                        <button class="btn-primary" style="height: 50px;">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 00b: Authorization -->
+        <div class="screen-wrapper">
+            <div class="screen-label">00b — Authorization</div>
+            <div class="iphone-frame">
+                <div class="screen">
+                    <div class="dynamic-island"></div>
+
+                    <div class="status-bar">
+                        <span class="status-time">9:41</span>
+                        <div class="status-icons">
+                            <svg style="width:17px;height:12px;" viewBox="0 0 17 12"><path fill="#000" d="M1 8h2v4H1zM5 5h2v7H5zM9 2h2v10H9zM13 0h2v12h-2z" opacity="1"/></svg>
+                            <svg style="width:16px;height:12px;" viewBox="0 0 16 12"><path fill="#000" d="M8 2.4c2.5 0 4.8 1 6.5 2.6l1.5-1.5C13.8 1.3 11 0 8 0S2.2 1.3 0 3.5L1.5 5C3.2 3.4 5.5 2.4 8 2.4zm0 3c1.5 0 2.9.6 3.9 1.6l1.5-1.5c-1.4-1.4-3.3-2.2-5.4-2.2s-4 .8-5.4 2.2L4.1 7c1-.9 2.4-1.5 3.9-1.6zm0 3c.8 0 1.6.3 2.1.9l2-2c-1.1-1.1-2.6-1.8-4.1-1.8s-3 .7-4.1 1.8l2 2c.5-.6 1.3-.9 2.1-.9zM8 12l2-2c-.5-.6-1.2-.9-2-.9s-1.5.3-2 .9l2 2z"/></svg>
+                            <svg style="width:25px;height:12px;" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-width="1"/><rect x="2" y="3" width="17" height="6" rx="1" fill="#000"/><path d="M23 4v4c1 0 1.5-.5 1.5-2s-.5-2-1.5-2z" fill="#000" opacity="0.4"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="onboarding-content" style="justify-content: flex-start; padding-top: 60px; padding-bottom: 0;">
+                        <!-- Icon -->
+                        <div style="width: 72px; height: 72px; background: linear-gradient(135deg, var(--primary-blue), var(--secondary-indigo)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                            <svg viewBox="0 0 24 24" style="width: 36px; height: 36px; fill: white;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        </div>
+
+                        <h1 class="onboarding-title" style="font-size: 24px; margin-bottom: 12px;">Sign In</h1>
+                        <p class="onboarding-subtitle" style="font-size: 15px; margin-bottom: 40px; max-width: 320px; line-height: 1.4;">So we can create personalized recommendations based on your preferences.</p>
+
+                        <!-- Auth buttons -->
+                        <div style="width: 100%; padding: 0 16px;">
+                            <!-- Apple Sign In -->
+                            <button style="width: 100%; height: 50px; background: #000; color: white; border: none; border-radius: 12px; font-size: 17px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; cursor: pointer;">
+                                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: white;"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                                Sign in with Apple
+                            </button>
+
+                            <!-- Google Sign In -->
+                            <button style="width: 100%; height: 50px; background: white; color: #000; border: 1px solid var(--separator); border-radius: 12px; font-size: 17px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; cursor: pointer;">
+                                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                                Sign in with Google
+                            </button>
+
+                            <!-- Email Sign In -->
+                            <button style="width: 100%; height: 50px; background: var(--bg-secondary); color: var(--label-primary); border: none; border-radius: 12px; font-size: 17px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
+                                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: var(--label-secondary);"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                Sign in with Email
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="padding: 16px; padding-bottom: calc(16px + 34px);">
+                        <button style="width: 100%; height: 50px; background: transparent; color: var(--primary-blue); border: none; font-size: 17px; font-weight: 500; cursor: pointer;">Skip</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 1: Home -->
+        <div class="screen-wrapper">
+            <div class="screen-label">01 — Home Screen</div>
+            <div class="iphone-frame">
+                <div class="screen">
+                    <div class="dynamic-island"></div>
+
+                    <div class="status-bar">
+                        <span class="status-time">9:41</span>
+                        <div class="status-icons">
+                            <!-- Cellular bars -->
+                            <svg style="width:17px;height:12px;" viewBox="0 0 17 12"><path fill="#000" d="M1 8h2v4H1zM5 5h2v7H5zM9 2h2v10H9zM13 0h2v12h-2z" opacity="1"/></svg>
+                            <!-- WiFi -->
+                            <svg style="width:16px;height:12px;" viewBox="0 0 16 12"><path fill="#000" d="M8 2.4c2.5 0 4.8 1 6.5 2.6l1.5-1.5C13.8 1.3 11 0 8 0S2.2 1.3 0 3.5L1.5 5C3.2 3.4 5.5 2.4 8 2.4zm0 3c1.5 0 2.9.6 3.9 1.6l1.5-1.5c-1.4-1.4-3.3-2.2-5.4-2.2s-4 .8-5.4 2.2L4.1 7c1-.9 2.4-1.5 3.9-1.6zm0 3c.8 0 1.6.3 2.1.9l2-2c-1.1-1.1-2.6-1.8-4.1-1.8s-3 .7-4.1 1.8l2 2c.5-.6 1.3-.9 2.1-.9zM8 12l2-2c-.5-.6-1.2-.9-2-.9s-1.5.3-2 .9l2 2z"/></svg>
+                            <!-- Battery -->
+                            <svg style="width:25px;height:12px;" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-width="1"/><rect x="2" y="3" width="17" height="6" rx="1" fill="#000"/><path d="M23 4v4c1 0 1.5-.5 1.5-2s-.5-2-1.5-2z" fill="#000" opacity="0.4"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="app-header">
+                        <h1 style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <div style="width: 28px; height: 28px; background: linear-gradient(135deg, var(--primary-blue), var(--secondary-indigo)); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
+                                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: white;"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                            </div>
+                            FareScout
+                        </h1>
+                    </div>
+
+                    <div class="content" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <p style="text-align: center; color: var(--label-secondary); font-size: 20px; font-weight: 500; margin-bottom: 8px;">
+                            Where do you want to fly?
+                        </p>
+                        <p style="text-align: center; color: var(--label-tertiary); font-size: 15px; margin-bottom: 32px;">
+                            Type or speak your request
+                        </p>
+
+                        <!-- Voice input area - same order as 01B -->
+                        <div style="width: 100%; max-width: 300px; text-align: center;">
+                            <!-- Waveform animation - blue bars, centered -->
+                            <div class="waveform" style="justify-content: center;">
+                                <div class="waveform-bar" style="background: var(--primary-blue);"></div>
+                                <div class="waveform-bar" style="background: var(--primary-blue);"></div>
+                                <div class="waveform-bar" style="background: var(--primary-blue);"></div>
+                                <div class="waveform-bar" style="background: var(--primary-blue);"></div>
+                                <div class="waveform-bar" style="background: var(--primary-blue);"></div>
+                                <div class="waveform-bar" style="background: var(--primary-blue);"></div>
+                                <div class="waveform-bar" style="background: var(--primary-blue);"></div>
+                            </div>
+
+                            <!-- Status text -->
+                            <p style="font-size: 15px; color: var(--label-secondary); margin-top: 20px; font-weight: 500;">Listening...</p>
+
+                            <!-- Transcription display -->
+                            <p style="font-size: 17px; color: var(--label-primary); line-height: 1.5; margin-top: 12px;">Find flights to Istanbul from Moscow for two adults and a child...</p>
+                        </div>
+                    </div>
+
+                    <div class="input-bar">
+                        <input type="text" class="input-field" placeholder="Type your request..." style="padding-left: 16px;">
+                        <div class="voice-btn">
+                            <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="tab-bar">
+                        <div class="tab-item active">
+                            <svg class="tab-icon-svg" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                            <span>Home</span>
+                        </div>
+                        <div class="tab-item">
+                            <svg class="tab-icon-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <span>Favorites</span>
+                        </div>
+                        <div class="tab-item">
+                            <svg class="tab-icon-svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            <span>Profile</span>
+                        </div>
+                        <div class="tab-item">
+                            <svg class="tab-icon-svg" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                            <span>Settings</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 1b: Voice Input -->
+        <div class="screen-wrapper">
+            <div class="screen-label">01b — Voice Input</div>
+            <div class="iphone-frame">
+                <div class="screen">
+                    <div class="dynamic-island"></div>
+
+                    <div class="status-bar">
+                        <span class="status-time">9:41</span>
+                        <div class="status-icons">
+                            <!-- Cellular bars -->
+                            <svg style="width:17px;height:12px;" viewBox="0 0 17 12"><path fill="#000" d="M1 8h2v4H1zM5 5h2v7H5zM9 2h2v10H9zM13 0h2v12h-2z" opacity="1"/></svg>
+                            <!-- WiFi -->
+                            <svg style="width:16px;height:12px;" viewBox="0 0 16 12"><path fill="#000" d="M8 2.4c2.5 0 4.8 1 6.5 2.6l1.5-1.5C13.8 1.3 11 0 8 0S2.2 1.3 0 3.5L1.5 5C3.2 3.4 5.5 2.4 8 2.4zm0 3c1.5 0 2.9.6 3.9 1.6l1.5-1.5c-1.4-1.4-3.3-2.2-5.4-2.2s-4 .8-5.4 2.2L4.1 7c1-.9 2.4-1.5 3.9-1.6zm0 3c.8 0 1.6.3 2.1.9l2-2c-1.1-1.1-2.6-1.8-4.1-1.8s-3 .7-4.1 1.8l2 2c.5-.6 1.3-.9 2.1-.9zM8 12l2-2c-.5-.6-1.2-.9-2-.9s-1.5.3-2 .9l2 2z"/></svg>
+                            <!-- Battery -->
+                            <svg style="width:25px;height:12px;" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-width="1"/><rect x="2" y="3" width="17" height="6" rx="1" fill="#000"/><path d="M23 4v4c1 0 1.5-.5 1.5-2s-.5-2-1.5-2z" fill="#000" opacity="0.4"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="app-header">
+                        <h1>FareScout</h1>
+                    </div>
+
+                    <div class="content">
+                        <div class="section-header">Recent Searches</div>
+                        <div class="card-group" style="opacity: 0.3;">
+                            <div class="card-row">
+                                <div class="card-content">
+                                    <h3>Moscow → Istanbul</h3>
+                                    <p>Sep 25-30 · 2 adults, 1 child</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Voice Overlay -->
+                    <div class="voice-overlay">
+                        <div class="voice-circle">
+                            <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <div class="voice-status">Listening...</div>
+                        <div class="voice-transcript">
+                            Find flights to Istanbul from Moscow for two adults and a child...<span class="cursor"></span>
+                        </div>
+                        <div class="voice-cancel">Tap to cancel</div>
+                    </div>
+
+                    <div class="tab-bar" style="opacity: 0;">
+                        <div class="tab-item active">
+                            <span class="tab-icon">🏠</span>
+                            <span>Home</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 2: Chat with DatePicker -->
+        <div class="screen-wrapper">
+            <div class="screen-label">02 — Chat with Calendar</div>
+            <div class="iphone-frame">
+                <div class="screen">
+                    <div class="dynamic-island"></div>
+
+                    <div class="status-bar">
+                        <span class="status-time">9:41</span>
+                        <div class="status-icons">
+                            <!-- Cellular bars -->
+                            <svg style="width:17px;height:12px;" viewBox="0 0 17 12"><path fill="#000" d="M1 8h2v4H1zM5 5h2v7H5zM9 2h2v10H9zM13 0h2v12h-2z" opacity="1"/></svg>
+                            <!-- WiFi -->
+                            <svg style="width:16px;height:12px;" viewBox="0 0 16 12"><path fill="#000" d="M8 2.4c2.5 0 4.8 1 6.5 2.6l1.5-1.5C13.8 1.3 11 0 8 0S2.2 1.3 0 3.5L1.5 5C3.2 3.4 5.5 2.4 8 2.4zm0 3c1.5 0 2.9.6 3.9 1.6l1.5-1.5c-1.4-1.4-3.3-2.2-5.4-2.2s-4 .8-5.4 2.2L4.1 7c1-.9 2.4-1.5 3.9-1.6zm0 3c.8 0 1.6.3 2.1.9l2-2c-1.1-1.1-2.6-1.8-4.1-1.8s-3 .7-4.1 1.8l2 2c.5-.6 1.3-.9 2.1-.9zM8 12l2-2c-.5-.6-1.2-.9-2-.9s-1.5.3-2 .9l2 2z"/></svg>
+                            <!-- Battery -->
+                            <svg style="width:25px;height:12px;" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-width="1"/><rect x="2" y="3" width="17" height="6" rx="1" fill="#000"/><path d="M23 4v4c1 0 1.5-.5 1.5-2s-.5-2-1.5-2z" fill="#000" opacity="0.4"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="nav-bar">
+                        <span class="nav-back">
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                        </span>
+                        <span class="nav-title">New Search</span>
+                        <span class="nav-action">
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                        </span>
+                    </div>
+
+                    <div class="content" style="padding-bottom: 0;">
+                        <div class="chat-container">
+                            <div class="bubble bubble-user">
+                                Find flights to Istanbul from Moscow for two adults and a 5-year-old child in late September
+                            </div>
+
+                            <div class="bubble-assistant-container">
+                                <div class="assistant-avatar">
+                                    <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:white;"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                                </div>
+                                <div class="bubble bubble-assistant">
+                                    Great! Searching for flights:<br><br>
+                                    <strong>Moscow → Istanbul</strong><br>
+                                    2 adults + 1 child (5 years old)<br><br>
+                                    Please specify the exact travel dates:
+                                </div>
+                            </div>
+
+                            <div class="calendar-widget">
+                                <div class="calendar-header">
+                                    <span class="calendar-nav">‹</span>
+                                    <h3>September 2025</h3>
+                                    <span class="calendar-nav">›</span>
+                                </div>
+
+                                <div class="calendar-grid">
+                                    <span class="calendar-day-header">Mon</span>
+                                    <span class="calendar-day-header">Tue</span>
+                                    <span class="calendar-day-header">Wed</span>
+                                    <span class="calendar-day-header">Thu</span>
+                                    <span class="calendar-day-header">Fri</span>
+                                    <span class="calendar-day-header">Sat</span>
+                                    <span class="calendar-day-header">Sun</span>
+
+                                    <span class="calendar-day disabled">1</span>
+                                    <span class="calendar-day disabled">2</span>
+                                    <span class="calendar-day disabled">3</span>
+                                    <span class="calendar-day disabled">4</span>
+                                    <span class="calendar-day disabled">5</span>
+                                    <span class="calendar-day disabled">6</span>
+                                    <span class="calendar-day disabled">7</span>
+
+                                    <span class="calendar-day">8</span>
+                                    <span class="calendar-day">9</span>
+                                    <span class="calendar-day">10</span>
+                                    <span class="calendar-day">11</span>
+                                    <span class="calendar-day">12</span>
+                                    <span class="calendar-day">13</span>
+                                    <span class="calendar-day">14</span>
+
+                                    <span class="calendar-day">15</span>
+                                    <span class="calendar-day">16</span>
+                                    <span class="calendar-day">17</span>
+                                    <span class="calendar-day">18</span>
+                                    <span class="calendar-day">19</span>
+                                    <span class="calendar-day">20</span>
+                                    <span class="calendar-day">21</span>
+
+                                    <span class="calendar-day">22</span>
+                                    <span class="calendar-day">23</span>
+                                    <span class="calendar-day">24</span>
+                                    <span class="calendar-day selected">25</span>
+                                    <span class="calendar-day range">26</span>
+                                    <span class="calendar-day range">27</span>
+                                    <span class="calendar-day range">28</span>
+
+                                    <span class="calendar-day range">29</span>
+                                    <span class="calendar-day selected">30</span>
+                                    <span class="calendar-day"></span>
+                                    <span class="calendar-day"></span>
+                                    <span class="calendar-day"></span>
+                                    <span class="calendar-day"></span>
+                                    <span class="calendar-day"></span>
+                                </div>
+
+                                <div class="calendar-dates">
+                                    <div class="calendar-date-item">
+                                        <label>Departure</label>
+                                        <span>Sep 25</span>
+                                    </div>
+                                    <div class="calendar-date-item">
+                                        <label>Return</label>
+                                        <span>Sep 30</span>
+                                    </div>
+                                </div>
+
+                                <button class="btn-primary" style="margin-top: 16px;">Select Dates</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-bar">
+                        <div class="control-btn active" title="Mute voice">
+                            <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        </div>
+                        <div class="control-btn" title="Search form">
+                            <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                        </div>
+                        <input type="text" class="input-field" placeholder="Message..." style="flex:1;">
+                        <div class="voice-btn">
+                            <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 3: Search Form -->
+        <div class="screen-wrapper">
+            <div class="screen-label">03 — Search form</div>
+            <div class="iphone-frame">
+                <div class="screen">
+                    <div class="dynamic-island"></div>
+
+                    <div class="status-bar">
+                        <span class="status-time">9:41</span>
+                        <div class="status-icons">
+                            <!-- Cellular bars -->
+                            <svg style="width:17px;height:12px;" viewBox="0 0 17 12"><path fill="#000" d="M1 8h2v4H1zM5 5h2v7H5zM9 2h2v10H9zM13 0h2v12h-2z" opacity="1"/></svg>
+                            <!-- WiFi -->
+                            <svg style="width:16px;height:12px;" viewBox="0 0 16 12"><path fill="#000" d="M8 2.4c2.5 0 4.8 1 6.5 2.6l1.5-1.5C13.8 1.3 11 0 8 0S2.2 1.3 0 3.5L1.5 5C3.2 3.4 5.5 2.4 8 2.4zm0 3c1.5 0 2.9.6 3.9 1.6l1.5-1.5c-1.4-1.4-3.3-2.2-5.4-2.2s-4 .8-5.4 2.2L4.1 7c1-.9 2.4-1.5 3.9-1.6zm0 3c.8 0 1.6.3 2.1.9l2-2c-1.1-1.1-2.6-1.8-4.1-1.8s-3 .7-4.1 1.8l2 2c.5-.6 1.3-.9 2.1-.9zM8 12l2-2c-.5-.6-1.2-.9-2-.9s-1.5.3-2 .9l2 2z"/></svg>
+                            <!-- Battery -->
+                            <svg style="width:25px;height:12px;" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-width="1"/><rect x="2" y="3" width="17" height="6" rx="1" fill="#000"/><path d="M23 4v4c1 0 1.5-.5 1.5-2s-.5-2-1.5-2z" fill="#000" opacity="0.4"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="nav-bar">
+                        <span class="nav-back">
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                        </span>
+                        <span class="nav-title">Search Flights</span>
+                        <span class="nav-action"></span>
+                    </div>
+
+                    <div class="content">
+                        <!-- Trip type selector -->
+                        <div class="segmented-control">
+                            <div class="segment active">Round Trip</div>
+                            <div class="segment">One Way</div>
+                        </div>
+
+                        <!-- Route -->
+                        <div class="form-group">
+                            <div class="form-row">
+                                <span class="form-label">From</span>
+                                <div class="form-value">
+                                    <div class="form-value-content">
+                                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.5 19h19v2h-19v-2zm19.57-9.36c-.21-.8-1.04-1.28-1.84-1.06L14.92 10l-6.9-6.43-1.93.51 4.14 7.17-4.97 1.33-1.97-1.54-1.45.39 1.82 3.16.77 1.33 1.6-.43 5.31-1.42 4.35-1.16L21 11.49c.81-.23 1.28-1.05 1.07-1.85z"/></svg>
+                                        <span>Moscow (MOW)</span>
+                                    </div>
+                                    <svg class="icon-svg tertiary" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <span class="form-label">To</span>
+                                <div class="form-value">
+                                    <div class="form-value-content">
+                                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.5 19h19v2h-19v-2zm16.84-3.15c.8.21 1.62-.26 1.84-1.06.21-.8-.26-1.62-1.06-1.84l-5.31-1.42-2.76-9.02L10.12 3v8.28L5.15 8.95l-.93-2.32-1.45-.39v1.17l2.09 6.64c.48 1.52 1.97 2.46 3.54 2.24l10.94-2.44z"/></svg>
+                                        <span>Istanbul (IST)</span>
+                                    </div>
+                                    <svg class="icon-svg tertiary" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dates -->
+                        <div class="form-group">
+                            <div class="form-row">
+                                <span class="form-label">Departure Date</span>
+                                <div class="form-value">
+                                    <div class="form-value-content">
+                                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+                                        <span>September 25, Thu</span>
+                                    </div>
+                                    <svg class="icon-svg tertiary" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <span class="form-label">Return Date</span>
+                                <div class="form-value">
+                                    <div class="form-value-content">
+                                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+                                        <span>September 30, Tue</span>
+                                    </div>
+                                    <svg class="icon-svg tertiary" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Passengers -->
+                        <div class="form-group">
+                            <div class="form-row" style="flex-direction: row; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <span class="form-label">Adults</span>
+                                    <span style="font-size: 13px; color: var(--label-tertiary);">12+ years</span>
+                                </div>
+                                <div class="stepper">
+                                    <div class="stepper-btn">
+                                        <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+                                    </div>
+                                    <span class="stepper-value">2</span>
+                                    <div class="stepper-btn">
+                                        <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row" style="flex-direction: row; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <span class="form-label">Children</span>
+                                    <span style="font-size: 13px; color: var(--label-tertiary);">2-11 years</span>
+                                </div>
+                                <div class="stepper">
+                                    <div class="stepper-btn">
+                                        <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+                                    </div>
+                                    <span class="stepper-value">1</span>
+                                    <div class="stepper-btn">
+                                        <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Child age input -->
+                            <div class="form-row" style="background: var(--bg-secondary); margin: 0 -16px; padding: 12px 16px;">
+                                <div class="child-age-row">
+                                    <span class="child-age-label">Child 1 age</span>
+                                    <input type="number" class="age-input" value="5" min="2" max="11">
+                                </div>
+                            </div>
+                            <div class="form-row" style="flex-direction: row; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <span class="form-label">Infants</span>
+                                    <span style="font-size: 13px; color: var(--label-tertiary);">under 2 years</span>
+                                </div>
+                                <div class="stepper">
+                                    <div class="stepper-btn">
+                                        <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+                                    </div>
+                                    <span class="stepper-value">0</span>
+                                    <div class="stepper-btn">
+                                        <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Class -->
+                        <div class="form-group">
+                            <div class="form-row">
+                                <span class="form-label">Cabin Class</span>
+                                <div class="form-value">
+                                    <div class="form-value-content">
+                                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 18v3h3v-3h10v3h3v-6H4v3zm15-8h3v3h-3v-3zM2 10h3v3H2v-3zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"/></svg>
+                                        <span>Economy</span>
+                                    </div>
+                                    <svg class="icon-svg tertiary" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Options -->
+                        <div class="form-group">
+                            <div class="toggle-row">
+                                <span>Direct flights only</span>
+                                <div class="toggle"></div>
+                            </div>
+                            <div class="toggle-row">
+                                <span>With baggage</span>
+                                <div class="toggle on"></div>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary" style="margin-top: 16px;">Search Flights</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 4: Search Results -->
+        <div class="screen-wrapper">
+            <div class="screen-label">04 — Search Results</div>
+            <div class="iphone-frame">
+                <div class="screen">
+                    <div class="dynamic-island"></div>
+
+                    <div class="status-bar">
+                        <span class="status-time">9:41</span>
+                        <div class="status-icons">
+                            <!-- Cellular bars -->
+                            <svg style="width:17px;height:12px;" viewBox="0 0 17 12"><path fill="#000" d="M1 8h2v4H1zM5 5h2v7H5zM9 2h2v10H9zM13 0h2v12h-2z" opacity="1"/></svg>
+                            <!-- WiFi -->
+                            <svg style="width:16px;height:12px;" viewBox="0 0 16 12"><path fill="#000" d="M8 2.4c2.5 0 4.8 1 6.5 2.6l1.5-1.5C13.8 1.3 11 0 8 0S2.2 1.3 0 3.5L1.5 5C3.2 3.4 5.5 2.4 8 2.4zm0 3c1.5 0 2.9.6 3.9 1.6l1.5-1.5c-1.4-1.4-3.3-2.2-5.4-2.2s-4 .8-5.4 2.2L4.1 7c1-.9 2.4-1.5 3.9-1.6zm0 3c.8 0 1.6.3 2.1.9l2-2c-1.1-1.1-2.6-1.8-4.1-1.8s-3 .7-4.1 1.8l2 2c.5-.6 1.3-.9 2.1-.9zM8 12l2-2c-.5-.6-1.2-.9-2-.9s-1.5.3-2 .9l2 2z"/></svg>
+                            <!-- Battery -->
+                            <svg style="width:25px;height:12px;" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-width="1"/><rect x="2" y="3" width="17" height="6" rx="1" fill="#000"/><path d="M23 4v4c1 0 1.5-.5 1.5-2s-.5-2-1.5-2z" fill="#000" opacity="0.4"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="nav-bar" style="flex-direction: column; align-items: flex-start; height: auto; padding: 8px 16px;">
+                        <div style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                            <span style="font-size: 17px; font-weight: 600;">MOW → IST</span>
+                            <div style="display: flex; gap: 16px;">
+                                <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                                <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav-subtitle">Sep 25 – Sep 30 · 3 passengers</div>
+
+                    <div class="sort-filter-bar">
+                        <div class="filter-pill">
+                            Recommended
+                            <svg class="icon-svg tertiary" viewBox="0 0 24 24" style="width:12px;height:12px;"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+                        <div class="filter-pill">
+                            <svg class="icon-svg tertiary" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+                            Filters
+                        </div>
+                    </div>
+
+                    <div class="content" style="padding-top: 8px;">
+                        <div class="assistant-hint">
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+                            <span>Found 24 options. Here are the best prices:</span>
+                        </div>
+
+                        <div class="flight-card">
+                            <div class="flight-card-header">
+                                <span class="flight-star">☆</span>
+                                <span class="flight-badge">BEST PRICE</span>
+                            </div>
+
+                            <div class="flight-airline">
+                                <div class="airline-logo">TK</div>
+                                <span class="airline-name">Turkish Airlines</span>
+                            </div>
+
+                            <div class="flight-segment">
+                                <div class="flight-times">
+                                    <span class="flight-time">06:45</span>
+                                    <div class="flight-line"></div>
+                                    <span class="flight-time">10:20</span>
+                                </div>
+                                <div class="flight-cities">
+                                    <span class="flight-city">MOW</span>
+                                    <span class="flight-duration">3h 35m</span>
+                                    <span class="flight-city">IST</span>
+                                </div>
+                                <div class="flight-stops">Direct</div>
+                            </div>
+
+                            <div class="flight-segment">
+                                <div class="flight-times">
+                                    <span class="flight-time">18:00</span>
+                                    <div class="flight-line"></div>
+                                    <span class="flight-time">21:30</span>
+                                </div>
+                                <div class="flight-cities">
+                                    <span class="flight-city">IST</span>
+                                    <span class="flight-duration">3h 30m</span>
+                                    <span class="flight-city">MOW</span>
+                                </div>
+                                <div class="flight-stops">Direct</div>
+                            </div>
+
+                            <div class="flight-baggage">
+                                <svg class="icon-svg" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--success-green);"><path d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 3h4v3h-4V3z"/></svg>
+                                Baggage included
+                            </div>
+
+                            <div class="flight-footer">
+                                <div>
+                                    <div class="flight-price">45 230 ₽</div>
+                                    <div class="flight-price-label">for all</div>
+                                </div>
+                                <div class="flight-cta">→</div>
+                            </div>
+                        </div>
+
+                        <div class="flight-card">
+                            <div class="flight-card-header">
+                                <span class="flight-star">☆</span>
+                            </div>
+
+                            <div class="flight-airline">
+                                <div class="airline-logo">SU</div>
+                                <span class="airline-name">Aeroflot</span>
+                            </div>
+
+                            <div class="flight-segment">
+                                <div class="flight-times">
+                                    <span class="flight-time">09:15</span>
+                                    <div class="flight-line"></div>
+                                    <span class="flight-time">12:45</span>
+                                </div>
+                                <div class="flight-cities">
+                                    <span class="flight-city">SVO</span>
+                                    <span class="flight-duration">3h 30m</span>
+                                    <span class="flight-city">IST</span>
+                                </div>
+                                <div class="flight-stops">Direct</div>
+                            </div>
+
+                            <div class="flight-footer">
+                                <div>
+                                    <div class="flight-price">48 900 ₽</div>
+                                    <div class="flight-price-label">for all</div>
+                                </div>
+                                <div class="flight-cta">→</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-bar">
+                        <div class="control-btn active" title="Mute voice">
+                            <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        </div>
+                        <input type="text" class="input-field" placeholder="Show direct only..." style="flex:1;">
+                        <div class="voice-btn">
+                            <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 5: Flight Details -->
+        <div class="screen-wrapper">
+            <div class="screen-label">05 — Flight Details</div>
+            <div class="iphone-frame">
+                <div class="screen">
+                    <div class="dynamic-island"></div>
+
+                    <div class="status-bar">
+                        <span class="status-time">9:41</span>
+                        <div class="status-icons">
+                            <!-- Cellular bars -->
+                            <svg style="width:17px;height:12px;" viewBox="0 0 17 12"><path fill="#000" d="M1 8h2v4H1zM5 5h2v7H5zM9 2h2v10H9zM13 0h2v12h-2z" opacity="1"/></svg>
+                            <!-- WiFi -->
+                            <svg style="width:16px;height:12px;" viewBox="0 0 16 12"><path fill="#000" d="M8 2.4c2.5 0 4.8 1 6.5 2.6l1.5-1.5C13.8 1.3 11 0 8 0S2.2 1.3 0 3.5L1.5 5C3.2 3.4 5.5 2.4 8 2.4zm0 3c1.5 0 2.9.6 3.9 1.6l1.5-1.5c-1.4-1.4-3.3-2.2-5.4-2.2s-4 .8-5.4 2.2L4.1 7c1-.9 2.4-1.5 3.9-1.6zm0 3c.8 0 1.6.3 2.1.9l2-2c-1.1-1.1-2.6-1.8-4.1-1.8s-3 .7-4.1 1.8l2 2c.5-.6 1.3-.9 2.1-.9zM8 12l2-2c-.5-.6-1.2-.9-2-.9s-1.5.3-2 .9l2 2z"/></svg>
+                            <!-- Battery -->
+                            <svg style="width:25px;height:12px;" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-width="1"/><rect x="2" y="3" width="17" height="6" rx="1" fill="#000"/><path d="M23 4v4c1 0 1.5-.5 1.5-2s-.5-2-1.5-2z" fill="#000" opacity="0.4"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="nav-bar">
+                        <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                        <span class="nav-title">Turkish Airlines</span>
+                        <svg class="icon-svg" viewBox="0 0 24 24" style="width:22px;height:22px;fill:var(--warning-orange);"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+
+                    <div class="content">
+                        <div class="detail-segment">
+                            <div class="segment-header">OUTBOUND · SEPTEMBER 25</div>
+                            <div class="segment-content">
+                                <div class="segment-times">
+                                    <span class="segment-time">06:45</span>
+                                    <span class="segment-time">10:20</span>
+                                </div>
+                                <div class="segment-cities">
+                                    <span class="segment-city">Moscow</span>
+                                    <span class="segment-city">Istanbul</span>
+                                </div>
+                                <div class="segment-airports">
+                                    <span>SVO</span>
+                                    <span>IST</span>
+                                </div>
+
+                                <div class="timeline">
+                                    <div class="timeline-item">Sheremetyevo, Terminal D</div>
+                                    <div class="timeline-item secondary">TK 414 · Boeing 737-800</div>
+                                    <div class="timeline-item secondary">3h 35m</div>
+                                    <div class="timeline-item">Ataturk, Terminal I</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-segment">
+                            <div class="segment-header">RETURN · SEPTEMBER 30</div>
+                            <div class="segment-content">
+                                <div class="segment-times">
+                                    <span class="segment-time">18:00</span>
+                                    <span class="segment-time">21:30</span>
+                                </div>
+                                <div class="segment-cities">
+                                    <span class="segment-city">Istanbul</span>
+                                    <span class="segment-city">Moscow</span>
+                                </div>
+                                <div class="segment-airports">
+                                    <span>IST</span>
+                                    <span>SVO</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fare-card">
+                            <div class="fare-title">Economy Light Fare</div>
+
+                            <div class="fare-item">
+                                <svg class="icon-svg" viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--success-green);"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                <span>Carry-on 8 kg</span>
+                            </div>
+                            <div class="fare-item">
+                                <svg class="icon-svg" viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--success-green);"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                <span>Checked bag 23 kg</span>
+                            </div>
+                            <div class="fare-item">
+                                <svg class="icon-svg" viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--error-red);"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                <span>Seat selection</span>
+                            </div>
+                            <div class="fare-item">
+                                <svg class="icon-svg" viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--error-red);"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                <span>Refundable</span>
+                            </div>
+                            <div class="fare-item">
+                                <svg class="icon-svg" viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--warning-orange);"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                                <span>Changeable for a fee</span>
+                            </div>
+
+                            <div class="fare-link">
+                                More about fare
+                                <svg class="icon-svg" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="assistant-hint" style="background: var(--bg-secondary); border-radius: 12px; margin-bottom: 16px;">
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+                            <span>I can explain fare rules or help with visa requirements</span>
+                        </div>
+                    </div>
+
+                    <div class="bottom-action-bar">
+                        <span class="bottom-price">45 230 ₽</span>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
