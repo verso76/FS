@@ -875,48 +875,16 @@
             margin: 8px 0 16px 0;
         }
 
-        .baggage-passenger {
-            padding-bottom: 16px;
-            margin-bottom: 16px;
-            border-bottom: 0.5px solid var(--separator);
-        }
-
-        .baggage-passenger:last-of-type {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .passenger-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--label-primary);
-        }
-
-        .baggage-options {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .baggage-option {
+        .baggage-row {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            cursor: pointer;
-            border: 1.5px solid transparent;
+            padding: 12px 0;
+            border-bottom: 0.5px solid var(--separator);
         }
 
-        .baggage-option.selected {
-            border-color: var(--primary-blue);
-            background: rgba(0, 122, 255, 0.05);
+        .baggage-row:last-of-type {
+            border-bottom: none;
         }
 
         .baggage-icon {
@@ -942,45 +910,54 @@
             color: var(--label-secondary);
         }
 
-        .baggage-price {
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--label-primary);
+        .baggage-price-unit {
+            font-size: 14px;
+            color: var(--label-secondary);
         }
 
-        .baggage-radio {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            border: 2px solid var(--label-tertiary);
-        }
-
-        .baggage-radio.checked {
-            border-color: var(--primary-blue);
-            background: var(--primary-blue);
-            position: relative;
-        }
-
-        .baggage-radio.checked::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 50%;
-        }
-
-        .baggage-expand {
+        .baggage-stepper {
             display: flex;
             align-items: center;
-            gap: 4px;
-            margin-top: 8px;
-            font-size: 14px;
+            gap: 0;
+        }
+
+        .stepper-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--bg-secondary);
+            font-size: 18px;
+            font-weight: 500;
             color: var(--primary-blue);
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stepper-btn:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+
+        .stepper-btn:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        .stepper-btn.disabled {
+            color: var(--label-tertiary);
+            cursor: default;
+        }
+
+        .stepper-value {
+            width: 36px;
+            height: 32px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--label-primary);
         }
 
         .baggage-total {
@@ -988,7 +965,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px 0;
-            margin-top: 16px;
+            margin-top: 8px;
             border-top: 0.5px solid var(--separator);
             font-size: 15px;
             color: var(--label-secondary);
@@ -2098,113 +2075,53 @@
                                     <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:white;"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
                                 </div>
                                 <div class="bubble bubble-assistant">
-                                    Select baggage for each passenger:
+                                    How many checked bags do you need?
                                 </div>
                             </div>
 
-                            <!-- Baggage Selection Widget -->
+                            <!-- Baggage Selection Widget - Simplified -->
                             <div class="baggage-widget">
-                                <!-- Passenger 1 -->
-                                <div class="baggage-passenger">
-                                    <div class="passenger-header">
-                                        <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--label-secondary);"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                        <span>Adult 1</span>
+                                <!-- Checked bag 23kg -->
+                                <div class="baggage-row">
+                                    <div class="baggage-icon">
+                                        <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:var(--primary-blue);"><path d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 3h4v3h-4V3zm7 16H7V8h10v11z"/></svg>
                                     </div>
-                                    <div class="baggage-options">
-                                        <div class="baggage-option">
-                                            <div class="baggage-icon">
-                                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:var(--label-secondary);"><path d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 3h4v3h-4V3zm7 16H7V8h10v11z"/></svg>
-                                            </div>
-                                            <div class="baggage-info">
-                                                <span class="baggage-name">Carry-on only</span>
-                                                <span class="baggage-desc">Up to 8 kg</span>
-                                            </div>
-                                            <div class="baggage-price">Included</div>
-                                            <div class="baggage-radio"></div>
-                                        </div>
-                                        <div class="baggage-option selected">
-                                            <div class="baggage-icon">
-                                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:var(--primary-blue);"><path d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 3h4v3h-4V3zm7 16H7V8h10v11z"/></svg>
-                                            </div>
-                                            <div class="baggage-info">
-                                                <span class="baggage-name">1 checked bag</span>
-                                                <span class="baggage-desc">Up to 23 kg</span>
-                                            </div>
-                                            <div class="baggage-price">+ $45</div>
-                                            <div class="baggage-radio checked"></div>
-                                        </div>
-                                        <div class="baggage-option">
-                                            <div class="baggage-icon">
-                                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:var(--label-secondary);"><path d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 3h4v3h-4V3zm7 16H7V8h10v11z"/></svg>
-                                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:var(--label-secondary);margin-left:-8px;"><path d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 3h4v3h-4V3zm7 16H7V8h10v11z"/></svg>
-                                            </div>
-                                            <div class="baggage-info">
-                                                <span class="baggage-name">2 checked bags</span>
-                                                <span class="baggage-desc">Up to 23 kg each</span>
-                                            </div>
-                                            <div class="baggage-price">+ $80</div>
-                                            <div class="baggage-radio"></div>
-                                        </div>
+                                    <div class="baggage-info">
+                                        <span class="baggage-name">Checked bag</span>
+                                        <span class="baggage-desc">Up to 23 kg</span>
+                                    </div>
+                                    <div class="baggage-price-unit">$45 / bag</div>
+                                    <div class="baggage-stepper">
+                                        <button class="stepper-btn">−</button>
+                                        <span class="stepper-value">2</span>
+                                        <button class="stepper-btn active">+</button>
                                     </div>
                                 </div>
 
-                                <!-- Passenger 2 -->
-                                <div class="baggage-passenger">
-                                    <div class="passenger-header">
-                                        <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--label-secondary);"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                        <span>Adult 2</span>
+                                <!-- Heavy bag 32kg -->
+                                <div class="baggage-row">
+                                    <div class="baggage-icon">
+                                        <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:var(--label-secondary);"><path d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 3h4v3h-4V3zm7 16H7V8h10v11z"/></svg>
                                     </div>
-                                    <div class="baggage-options">
-                                        <div class="baggage-option selected">
-                                            <div class="baggage-icon">
-                                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:var(--primary-blue);"><path d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 3h4v3h-4V3zm7 16H7V8h10v11z"/></svg>
-                                            </div>
-                                            <div class="baggage-info">
-                                                <span class="baggage-name">Carry-on only</span>
-                                                <span class="baggage-desc">Up to 8 kg</span>
-                                            </div>
-                                            <div class="baggage-price">Included</div>
-                                            <div class="baggage-radio checked"></div>
-                                        </div>
+                                    <div class="baggage-info">
+                                        <span class="baggage-name">Heavy bag</span>
+                                        <span class="baggage-desc">Up to 32 kg</span>
                                     </div>
-                                    <div class="baggage-expand">
-                                        <span>More options</span>
-                                        <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--primary-blue);"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-                                    </div>
-                                </div>
-
-                                <!-- Child -->
-                                <div class="baggage-passenger">
-                                    <div class="passenger-header">
-                                        <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--label-secondary);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                                        <span>Child (5 y.o.)</span>
-                                    </div>
-                                    <div class="baggage-options">
-                                        <div class="baggage-option selected">
-                                            <div class="baggage-icon">
-                                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:var(--primary-blue);"><path d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 3h4v3h-4V3zm7 16H7V8h10v11z"/></svg>
-                                            </div>
-                                            <div class="baggage-info">
-                                                <span class="baggage-name">Carry-on only</span>
-                                                <span class="baggage-desc">Up to 8 kg</span>
-                                            </div>
-                                            <div class="baggage-price">Included</div>
-                                            <div class="baggage-radio checked"></div>
-                                        </div>
-                                    </div>
-                                    <div class="baggage-expand">
-                                        <span>More options</span>
-                                        <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--primary-blue);"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                                    <div class="baggage-price-unit">$75 / bag</div>
+                                    <div class="baggage-stepper">
+                                        <button class="stepper-btn disabled">−</button>
+                                        <span class="stepper-value">0</span>
+                                        <button class="stepper-btn active">+</button>
                                     </div>
                                 </div>
 
                                 <!-- Total -->
                                 <div class="baggage-total">
-                                    <span>Additional baggage cost:</span>
-                                    <span class="total-price">+ $45</span>
+                                    <span>Total for baggage:</span>
+                                    <span class="total-price">$90</span>
                                 </div>
 
-                                <button class="btn-primary">Confirm Baggage</button>
+                                <button class="btn-primary">Confirm</button>
                             </div>
                         </div>
                     </div>
